@@ -198,105 +198,109 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisSpacing: 16,
                                 childAspectRatio: 0.6,
                               ),
-                          children: [1, 2, 3, 4]
-                              .map(
-                                (p) => Container(
-                                  padding: EdgeInsets.only(
-                                    top: 8,
-                                    left: 8,
-                                    right: 8,
-                                    bottom: 16,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(255, 255, 255, 1),
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Stack(
+                          children:
+                              [product[0], product[1], product[2], product[3]]
+                                  .map(
+                                    (p) => Container(
+                                      padding: EdgeInsets.only(
+                                        top: 8,
+                                        left: 8,
+                                        right: 8,
+                                        bottom: 16,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Image.asset(
-                                            'assets/images/product_1.png',
-                                          ),
-                                          Row(
+                                          Stack(
                                             children: [
-                                              SizedBox(height: 30, width: 8),
-                                              Icon(
-                                                Icons.star,
-                                                color: Colors.amber,
-                                                size: 16,
+                                              Image.asset(p.image),
+
+                                              Row(
+                                                children: [
+                                                  SizedBox(
+                                                    height: 30,
+                                                    width: 8,
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Colors.amber,
+                                                    size: 16,
+                                                  ),
+                                                  SizedBox(width: 4),
+                                                  Text(
+                                                    '\$ ${p.rate}',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                              SizedBox(width: 4),
+                                            ],
+                                          ),
+                                          SizedBox(height: 4),
+                                          Text(
+                                            p.title,
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Text(
+                                            p.subbtitle,
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(
+                                                155,
+                                                155,
+                                                155,
+                                                1,
+                                              ),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                          SizedBox(height: 15),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
                                               Text(
-                                                '\$ 4.8',
+                                                '\$ ${p.price}',
                                                 style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 13,
+                                                  color: Colors.black,
+                                                  fontSize: 18,
                                                   fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          DetailScreen(),
+                                                    ),
+                                                  );
+                                                },
+                                                child: Image.asset(
+                                                  'assets/images/add.png',
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 4),
-                                      Text(
-                                        'Cappucino',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Text(
-                                        'With Chocolate',
-                                        style: TextStyle(
-                                          color: Color.fromRGBO(
-                                            155,
-                                            155,
-                                            155,
-                                            1,
-                                          ),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      SizedBox(height: 15),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            '\$ 4.53',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      DetailScreen(),
-                                                ),
-                                              );
-                                            },
-                                            child: Image.asset(
-                                              'assets/images/add.png',
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              )
-                              .toList(),
+                                    ),
+                                  )
+                                  .toList(),
                         ),
                       ),
                     ],
