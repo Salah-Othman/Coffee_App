@@ -8,7 +8,7 @@ class DeliverScreen extends StatefulWidget {
 
 class _DeliverScreenState extends State<DeliverScreen> {
   int counter = 0;
-  double get price => counter * 5.53;
+  double get price => counter * 4.53;
   double get deliveryFee => calculateDeliveryFee!;
   double get totalPayment => price + calculateDeliveryFee!;
   double? get calculateDeliveryFee {
