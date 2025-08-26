@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/order.dart';
 
 class DeliverScreen extends StatefulWidget {
   @override
@@ -9,7 +10,21 @@ class _DeliverScreenState extends State<DeliverScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.arrow_back_ios),
+        ),
+        centerTitle: true,
+        title: Text(
+          'Order',
+          style: TextStyle(
+            color: Color.fromRGBO(47, 45, 44, 1),
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24, top: 24),
         child: Column(
@@ -355,20 +370,30 @@ class _DeliverScreenState extends State<DeliverScreen> {
                         ],
                       ),
                       SizedBox(height: 12),
-                      Container(
-                        alignment: Alignment.center,
-                        width: 315,
-                        height: 55,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(198, 124, 78, 1),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Text(
-                          'Order',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OrderScreen(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 315,
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(198, 124, 78, 1),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Text(
+                            'Order',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),

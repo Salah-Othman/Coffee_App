@@ -7,7 +7,7 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  String selectedSize = '';
+  String selectedSize = 'M';
   void selectSize(String size) {
     setState(() {
       selectedSize = size;
@@ -24,13 +24,17 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
         centerTitle: true,
         title: Text('Detail'),
+        actions: [Icon(Icons.heart_broken, color: Colors.black)],
+        actionsPadding: EdgeInsets.only(right: 10),
       ),
       body: Container(
         padding: EdgeInsets.only(left: 24, right: 24),
         decoration: BoxDecoration(color: Colors.white),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 12),
             Center(child: Image.asset('assets/images/detail1.png')),
             SizedBox(height: 12),
             Text(
