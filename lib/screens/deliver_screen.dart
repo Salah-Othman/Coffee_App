@@ -7,6 +7,18 @@ class DeliverScreen extends StatefulWidget {
 }
 
 class _DeliverScreenState extends State<DeliverScreen> {
+  int counter = 0;
+  double get price => counter * 5.53;
+  double get deliveryFee => calculateDeliveryFee!;
+  double get totalPayment => price + calculateDeliveryFee!;
+  double? get calculateDeliveryFee {
+    if (counter <= 0) {
+      return 0.0;
+    } else {
+      return 1.0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +43,6 @@ class _DeliverScreenState extends State<DeliverScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.only(left: 1, right: 1),
               decoration: BoxDecoration(
                 color: Color.fromRGBO(240, 240, 240, 1),
                 borderRadius: BorderRadius.circular(12),
@@ -193,10 +204,18 @@ class _DeliverScreenState extends State<DeliverScreen> {
                     ),
                     Row(
                       children: [
-                        Image.asset('assets/images/sub_counter.png'),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              if (counter > 0) counter--;
+                            });
+                          },
+                          child: Image.asset('assets/images/sub_counter.png'),
+                        ),
                         SizedBox(width: 11.5),
+
                         Text(
-                          '1',
+                          '$counter',
                           style: TextStyle(
                             color: Color.fromRGBO(47, 45, 44, 1),
                             fontSize: 15,
@@ -204,7 +223,14 @@ class _DeliverScreenState extends State<DeliverScreen> {
                           ),
                         ),
                         SizedBox(width: 11.5),
-                        Image.asset('assets/images/add_counter.png'),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              counter++;
+                            });
+                          },
+                          child: Image.asset('assets/images/add_counter.png'),
+                        ),
                       ],
                     ),
                   ],
@@ -250,6 +276,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //payment summary ===============================
                 Text(
                   'Payment Summary',
                   style: TextStyle(
@@ -259,6 +286,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
                   ),
                 ),
                 SizedBox(height: 9),
+                //Price =========================================
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -271,7 +299,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
                       ),
                     ),
                     Text(
-                      '\$ 4.53',
+                      '\$ ${price.toStringAsFixed(2)}',
                       style: TextStyle(
                         color: Color.fromRGBO(47, 45, 44, 1),
                         fontSize: 14,
@@ -281,6 +309,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
                   ],
                 ),
                 SizedBox(height: 14),
+                //Delivery Fee ==================================
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -292,8 +321,9 @@ class _DeliverScreenState extends State<DeliverScreen> {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
+
                     Text(
-                      '\$ 1.0',
+                      '\$ ${deliveryFee.toStringAsFixed(2)}',
                       style: TextStyle(
                         color: Color.fromRGBO(47, 45, 44, 1),
                         fontSize: 14,
@@ -311,6 +341,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
                   ),
                 ),
                 SizedBox(height: 14),
+                //Total Payment =================================
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -323,7 +354,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
                       ),
                     ),
                     Text(
-                      '\$ 5.53',
+                      '\$ ${totalPayment.toStringAsFixed(2)}',
                       style: TextStyle(
                         color: Color.fromRGBO(47, 45, 44, 1),
                         fontSize: 14,
@@ -333,6 +364,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
                   ],
                 ),
                 SizedBox(height: 10),
+                //Order Button ==================================
                 Container(
                   decoration: BoxDecoration(
                     border: Border(
@@ -355,7 +387,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
                               Image.asset('assets/images/cash.png'),
                               SizedBox(width: 10),
                               Text(
-                                '\$ 5.53',
+                                '\$ ${totalPayment.toStringAsFixed(2)}',
                                 style: TextStyle(
                                   color: Color.fromRGBO(47, 45, 44, 1),
                                   fontSize: 12,

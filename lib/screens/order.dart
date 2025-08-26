@@ -12,6 +12,7 @@ class OrderScreen extends StatelessWidget {
       backgroundColor: Color.fromRGBO(255, 255, 255, 1),
       body: Column(
         children: [
+          //Maps==========================================
           Stack(
             children: [
               Image.asset('assets/images/maps.png'),
@@ -51,6 +52,7 @@ class OrderScreen extends StatelessWidget {
               ),
             ],
           ),
+          //Delivery information==========================
           Container(
             padding: EdgeInsets.only(left: 24, right: 24),
             child: Column(
@@ -66,7 +68,26 @@ class OrderScreen extends StatelessWidget {
                 SizedBox(height: 12.29),
                 Text('10 minutes left'),
                 SizedBox(height: 6),
-                Text('Delivery to Jl. Kpg Sutoyo'),
+                Text.rich(
+                  TextSpan(
+                    text: 'Delivery to ',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromRGBO(128, 128, 128, 1),
+                    ),
+                    children: [
+                      TextSpan(
+                        text: 'Jl. Kpg Sutoyo',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromRGBO(48, 51, 54, 1),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(height: 15),
                 Row(
                   children: [
